@@ -81,16 +81,13 @@ WSGI_APPLICATION = 'API_NUESTRAWEB.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-import os
 import dj_database_url
+import os
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default="postgres://postgres:Passw3rd+@db.cmpdedvpcuvokgneeezp.supabase.co:5432/postgres?sslmode=require",
-        conn_max_age=600,
-        ssl_require=True
-    )
+    "default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
+
 
 
 
