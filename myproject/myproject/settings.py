@@ -88,7 +88,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgres://postgres:Passw3rd+@db.cmpdedvpcuvokgneeezp.supabase.co:5432/postgres",
+        default="postgres://postgres:Passw3rd+@db.cmpdedvpcuvokgneeezp.supabase.co:5432/postgres?sslmode=require",
         conn_max_age=600,
         ssl_require=True
     )
