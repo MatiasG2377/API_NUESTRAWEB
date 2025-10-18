@@ -8,7 +8,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-le*bpc^-kbgt1cfeqzd3j2^0meezac!p%p$fwgi73c@!)ro8qn')
 
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+#Desarrollo True, Producción False
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ["*"] 
 
@@ -23,6 +24,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'drf_spectacular',
+    'galeria',
+    'fechas',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +75,7 @@ if all([DB_NAME, DB_USER, DB_PASSWORD, DB_HOST]):
             'HOST': DB_HOST,
             'PORT': DB_PORT,
             'OPTIONS': {
-                'sslmode': 'require',  # Supabase requiere SSL
+                'sslmode': 'disable',  # Supabase requiere SSL
             },
         }
     }
@@ -125,8 +128,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Mi API",
-    "DESCRIPTION": "Documentación de Galeria y Fecha",
+    "TITLE": "La API de Nuestra Web",
+    "DESCRIPTION": "Documentación completa de la API de Nuestra Web, que permite el funcionamiento de la web que sirve como nuestro diario.",
     "VERSION": "1.0.0",
 }
 
