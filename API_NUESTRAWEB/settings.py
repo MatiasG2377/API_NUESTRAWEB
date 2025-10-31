@@ -115,3 +115,15 @@ SPECTACULAR_SETTINGS = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# --- AUTO MIGRACIONES EN PRODUCCIÓN (solo Render Free) ---
+import sys
+if 'runserver' not in sys.argv:
+    try:
+        from django.core.management import call_command
+        print("🚀 Ejecutando migraciones automáticamente en Render...")
+        call_command('makemigrations', 'galeria', interactive=False)
+        call_command('migrate', interactive=False)
+        print("✅ Migraciones completadas correctamente.")
+    except Exception as e:
+        print("⚠️ Error ejecutando migraciones:", e)
