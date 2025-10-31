@@ -6,6 +6,6 @@ router = routers.DefaultRouter()
 
 # Registra todos los endpoints aquí
 router.register(r'galeria', GaleriaViewSet)
-router.register(r'fehchas', FechasViewSet)
+router.register(r'fechas', FechasViewSet)
 
 urlpatterns = router.urls

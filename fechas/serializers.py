@@ -5,5 +5,5 @@ class FechasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fechas
         fields = '__all__'
-        read_only_fields = ['id', 'fecha']  
+        read_only_fields = ['id']  
         
