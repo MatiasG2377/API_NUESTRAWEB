@@ -1,6 +1,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import dj_database_url
 
 load_dotenv()
 
@@ -59,34 +60,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'API_NUESTRAWEB.wsgi.application'
 
 # --- Configuración de la Base de Datos ---
-DB_NAME = os.getenv("dbname")
-DB_USER = os.getenv("user")
-DB_PASSWORD = os.getenv("password")
-DB_HOST = os.getenv("host")
-DB_PORT = os.getenv("port", "5432")  # Puerto por defecto
 
-if all([DB_NAME, DB_USER, DB_PASSWORD, DB_HOST]):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': DB_NAME,
-            'USER': DB_USER,
-            'PASSWORD': DB_PASSWORD,
-            'HOST': DB_HOST,
-            'PORT': DB_PORT,
-            'OPTIONS': {
-                'sslmode': 'disable',  # Supabase requiere SSL
-            },
-        }
-    }
-else:
-    # Fallback a SQLite
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=600, ssl_require=True)
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
