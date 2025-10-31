@@ -127,3 +127,6 @@ if 'runserver' not in sys.argv:
         print("✅ Migraciones completadas correctamente.")
     except Exception as e:
         print("⚠️ Error ejecutando migraciones:", e)
+
+
+DEBUG = True # Cambiar a False en producción
