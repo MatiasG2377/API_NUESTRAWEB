@@ -14,6 +14,9 @@ DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ["*"] 
 
+# Configuración de archivos estáticos RENDER
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
